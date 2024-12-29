@@ -1,13 +1,13 @@
 [
 {
   "modid": "contenttweaker",
-  "name": "ContentTweaker",
+  "name": "ContentTweaker - Chrono's Patch",
   "description": "Allows you to create items, blocks and Tinkers construct materials via ZenScript.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Jaredlll08"],
+  "authorList": ["Jaredlll08", "Chronocide"],
   "credits": "",
   "logoFile": "CTLogo.png",
   "screenshots": [],

@@ -30,7 +30,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import fluxedCore.util.ResourcePackAssembler;
 
-@Mod(modid = "contenttweaker", name = "Content Tweaker", version = "1.0.5", dependencies = "required-after:MineTweaker3; after:TConstruct;required-after:fluxedcore;", useMetadata = false)
+@Mod(modid = "contenttweaker", name = "Content Tweaker - Chrono's Patch", version = "1.0.6", dependencies = "required-after:MineTweaker3; after:TConstruct;required-after:fluxedcore;", useMetadata = false)
 public class Tweaker {
 	public static File configDir = null;
 	public static int liquidID;
@@ -40,7 +40,6 @@ public class Tweaker {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent e) {
-		MinecraftServer
 		if (Loader.isModLoaded("TConstruct")) {
 			MinecraftForge.EVENT_BUS.register(new ToolEventHandler());
 			FMLCommonHandler.instance().bus().register(new ToolEventHandler());
@@ -50,12 +49,6 @@ public class Tweaker {
 		proxy.registerRenderers();
 		MineTweakerAPI.registerBracketHandler(new ItemBracketHandler());
 		ItemBracketHandler.rebuildItemRegistry();
-		configDir = new File(e.getSuggestedConfigurationFile().getParentFile().getAbsolutePath() + "/" + "contenttweaker");
-		fluxedCore.util.ResourcePackAssembler assembler = new ResourcePackAssembler(new File(configDir.getAbsolutePath() + "/ContentTweaker-Resourcepack"), "ContentTweaker Resource Pack", "contenttweaker");
-		addItems(assembler);
-		addBlocks(assembler);
-		addLangs(assembler);
-		assembler.assemble().inject();
 		ContentHelper.preInit();
 		MineTweakerAPI.registerClass(ContentBlock.class);
 		MineTweakerAPI.registerClass(ContentItem.class);
@@ -117,32 +110,6 @@ public class Tweaker {
 					FMLInterModComms.sendMessage("TConstruct", "addPartBuilderMaterial", tag);
 				}
 			}
-		}
-	}
-
-	private static void initialize(String dir) {
-		File temp = new File(configDir.getAbsolutePath() + "/" + dir);
-		temp.mkdirs();
-	}
-
-	private static void addItems(ResourcePackAssembler assembler) {
-		initialize("icons/items");
-		for (File f : new File(configDir.getAbsolutePath() + "/icons/items").listFiles()) {
-			assembler.addCustomFile("/assets/" + "contenttweaker" + "/textures/items", f);
-		}
-	}
-
-	private static void addBlocks(ResourcePackAssembler assembler) {
-		initialize("icons/blocks");
-		for (File f : new File(configDir.getAbsolutePath() + "/icons/blocks").listFiles()) {
-			assembler.addCustomFile("/assets/" + "contenttweaker" + "/textures/blocks", f);
-		}
-	}
-
-	private static void addLangs(ResourcePackAssembler assembler) {
-		initialize("lang");
-		for (File f : new File(configDir.getAbsolutePath() + "/lang").listFiles()) {
-			assembler.addLang(f);
 		}
 	}
 }

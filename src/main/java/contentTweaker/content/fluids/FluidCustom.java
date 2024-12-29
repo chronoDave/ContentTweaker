@@ -13,8 +13,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class FluidCustom extends BlockFluidClassic {
 	public IIcon stillIcon;
 	public IIcon flowingIcon;
-	private String stillIconTexture = "liquid_gray";
-	private String flowIconTexture = "liquid_gray_flow";
+	private final String stillIconTexture;
+	private final String flowIconTexture;
 	private Fluid fluid;
 
 	public String unlocalizedName;
@@ -30,9 +30,15 @@ public class FluidCustom extends BlockFluidClassic {
 		setLightLevel(luminosity);
 		setHardness(1.0F);
 		setBlockName(fluid.getName());
+		this.luminosity = luminosity;
 		this.stillIconTexture = ("contenttweaker:" + stillIconTexture);
 		this.flowIconTexture = ("contenttweaker:" + flowIconTexture);
-		this.color = color;
+		this.unlocalizedName = unlocalizedName;
+		this.density = density;
+		this.gaseous = gaseous;
+		this.temperature = temperature;
+		this.viscosity = viscosity;
+    this.color = color;
 	}
 
 	@Override
