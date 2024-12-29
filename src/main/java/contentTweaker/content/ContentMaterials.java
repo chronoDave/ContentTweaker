@@ -27,9 +27,9 @@ public class ContentMaterials {
 		}
 
 		EnchantmentWithLevel[] enchants = null;
-		if (nativeEnchantments == null || nativeEnchantments.length == 0)
+		if (nativeEnchantments == null || nativeEnchantments.length==0)
 			enchants = new EnchantmentWithLevel[0];
-		else {
+		if (nativeEnchantments != null && nativeEnchantments.length > 0) {
 			List<EnchantmentWithLevel> out = new ArrayList<EnchantmentWithLevel>();
 			for (String string : nativeEnchantments) {
 				if (Strings.isNullOrEmpty(string))
